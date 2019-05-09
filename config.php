@@ -11,5 +11,5 @@
     }
     //echo "Choosen language: " . $_SESSION['lang'];
 
-    require_once "languages/" . $_SESSION['lang'] . ".php";
+    require_once $_SESSION['lang'] . ".php";
 ?>
