@@ -1,0 +1,10 @@
+DB: projekt
+
+TAB: webtech2
+STLPCE: cislo; skolsky_rok; ID; meno; cv1; cv2; ...; cv11; Z1; Z2; VT; SK-T; SK-P; spolu; znamka
+
+TAB: studenti
+STLPCE: cislo; ID; meno; mail; heslo; tim; kapitan
+
+TAB: posta
+STLPCE: ID; datum; meno; predmet; sablona
