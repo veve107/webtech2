@@ -8,7 +8,9 @@
     }
     mysqli_set_charset($conn, "UTF8");
 
-    if(isset($_POST["submit"])){
+
+    //id z prihlasenia do systemu
+    /*if(isset($_POST["submit"])){
         $predmet = $_POST["predmet"];
         $rok = $_POST["rok"];
 
@@ -16,7 +18,7 @@
         $result = $conn->query($sql);
 
         $sql2 = "DESCRIBE $predmet";
-        $result2 = $conn->query($sql2);
+        $result2 = $conn->query($sql2);*/
     }
 ?>
 
