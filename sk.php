@@ -2,7 +2,7 @@
     $lang = array(
         "title" => "Finálne zadanie",
         "home" => "Domov",
-        "zadanie1" => "Zadanie 1",
+        "zadanie1" => "Zobrazenie výsledkov",
         "zadanie2" => "Zadanie 2",
         "zadanie3" => "Zadanie 3",
         "text" => "Vytvorte portál pre podporu predmetov “Webové technológie”, ktorý však bude možné použiť aj pre iné predmety.<br>

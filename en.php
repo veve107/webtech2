@@ -2,7 +2,7 @@
     $lang = array(
         "title" => "Final task",
         "home" => "Home",
-        "zadanie1" => "Task 1",
+        "zadanie1" => "Showing results",
         "zadanie2" => "Task 2",
         "zadanie3" => "Task 3",
         "text" => "Create a 'Web Technologies' subject support portal, which can also be used for other subjects.<br>

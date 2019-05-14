@@ -1,5 +1,23 @@
 <?php 
-	include "config.php"; 
+    include "config-lang.php";
+    include "config.php"; 
+    $conn = new mysqli($servername, $username, $password, $db);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    mysqli_set_charset($conn, "UTF8");
+
+    if(isset($_POST["submit"])){
+        $predmet = $_POST["predmet"];
+        $rok = $_POST["rok"];
+
+        $sql = "SELECT * FROM $predmet p WHERE p.skolskyrok = '$rok'";
+        $result = $conn->query($sql);
+
+        $sql2 = "DESCRIBE $predmet";
+        $result2 = $conn->query($sql2);
+    }
 ?>
 
 <?php
@@ -86,7 +104,30 @@ fclose($file);
                     <!--<td>A/B/C/D/E/FX</td>-->
                     </tr>
                 </tbody>
+                
+                
                 </table>
+                <?php
+                    if($result->num_rows > 0){
+                        echo "<table><thead>";
+                        while($row2 = $result2->fetch_assoc()){
+                            echo "<th>" . $row2["Field"] . "</th>";
+                        }
+                        echo "</thead><tbody>";
+                        while($row = $result->fetch_assoc()){
+                            echo "<tr>";
+                            foreach ($row as $data){
+                                echo "<td>" . $data . "</td>";
+                            }
+                            echo "</tr>";
+                        }
+                        echo "</tbody></table>";
+                    }else{
+                        echo "<p>Nenašli sa žiadne záznamy.</p>";
+                    }
+
+                        $conn->close();
+                ?>
 
 			</div>
 		</div>

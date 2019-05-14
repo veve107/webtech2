@@ -1,15 +1,6 @@
 <?php
-    session_start();
-
-    if (!isset($_SESSION['lang']))
-        $_SESSION['lang'] = "sk";
-    else if (isset($_GET['lang']) && $_SESSION['lang'] != $_GET['lang'] && !empty($_GET['lang'])) {
-        if ($_GET['lang'] == "en")
-            $_SESSION['lang'] = "en";
-        else if ($_GET['lang'] == "sk")
-            $_SESSION['lang'] = "sk";
-    }
-    //echo "Choosen language: " . $_SESSION['lang'];
-
-    require_once $_SESSION['lang'] . ".php";
+$servername = "localhost";
+$username = "xmintalz";
+$password = "xiaomiredminote3";
+$db = "finale";
 ?>
