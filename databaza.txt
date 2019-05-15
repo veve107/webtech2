@@ -8,3 +8,9 @@ STLPCE: cislo; ID; meno; mail; heslo; tim; kapitan
 
 TAB: posta
 STLPCE: ID; datum; meno; predmet; sablona
+
+TAB: u2_rok_predmet, priklad: u2_2018/2019_pt
+STLPCE: ID; meno; email; heslo; tim; body; suhlas
+
+TAB: u2_rok_predmet_timi_body, priklad: u2_2018/2019_pt_timi_body
+STLPCE: tim; body; suhlas; kapitan
