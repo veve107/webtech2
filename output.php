@@ -20,21 +20,20 @@
         $sql2 = "DESCRIBE $predmet";
         $result2 = $conn->query($sql2);*/
     }
-?>
 
-<?php
-$file = fopen('file.csv', 'r');
-while (($line = fgetcsv($file, 0, ";")) !== FALSE) {
-	$Zapocet = $line[2] + $line[3] + $line[4] + $line[5] + $line[6] + $line[7] + $line[8] + $line[9] + $line[10] + $line[11] + $line[12] + $line[13] + $line[14];
-	$Projekt = $line[16]  + $line[17];
-	$Test =  $line[15];
-	$Dotaznik = 0;
-	$Bonus = 0;
-	$Sucet = $line[18];
-	$Znamka = $line[19];
-  //print_r($line);
-}
-fclose($file);
+    $file = fopen('file.csv', 'r');
+    while (($line = fgetcsv($file, 0, ";")) !== FALSE) {
+        if ($line[0] == "12345")
+        $Zapocet = $line[2] + $line[3] + $line[4] + $line[5] + $line[6] + $line[7] + $line[8] + $line[9] + $line[10] + $line[11] + $line[12] + $line[13] + $line[14];
+        $Projekt = $line[16]  + $line[17];
+        $Test =  $line[15];
+        $Dotaznik = 0;
+        $Bonus = 0;
+        $Sucet = $line[18];
+        $Znamka = $line[19];
+    //print_r($line);
+    }
+    fclose($file);
 ?>
 
 <!DOCTYPE html>
