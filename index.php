@@ -27,7 +27,7 @@
 				<a class="nav-link" href="index.php"><?php echo $lang['home'] ?></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="output.php"><?php echo $lang['zadanie1'] ?></a>
+				<a class="nav-link" href="show-output.php"><?php echo $lang['zadanie1'] ?></a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="#"><?php echo $lang['zadanie2'] ?></a>

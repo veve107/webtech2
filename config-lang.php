@@ -9,7 +9,7 @@
         else if ($_GET['lang'] == "sk")
             $_SESSION['lang'] = "sk";
     }
-    //echo "Choosen language: " . $_SESSION['lang'];
+    //echo "Selected language: " . $_SESSION['lang'];
 
     require_once $_SESSION['lang'] . ".php";
 ?>
