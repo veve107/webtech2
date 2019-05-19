@@ -2,9 +2,14 @@
     $lang = array(
         "title" => "Finálne zadanie",
         "home" => "Domov",
-        "zadanie1" => "Zobrazenie výsledkov",
-        "zadanie2" => "Zadanie 2",
-        "zadanie3" => "Zadanie 3",
+        "zadanie1" => "Zobrazenie výsledkov (stud)",
+        "zadanie2" => "Zobrazenie výsledkov (admi)",
+        "zadanie3" => "Vloženie výsledkov (admi)",
+        "zadanie4" => "Vymazanie výsledkov (admi)",
+        "zadanie5" => "Bodovanie Tímov (admi)",
+        "zadanie6" => "Upload CSV (admi)",
+        "zadanie7" => "Export CSV (admi)",
+        "zadanie8" => "Read CSV (admi)",
         "text" => "Vytvorte portál pre podporu predmetov „Webové technológie“, ktorý však bude možné použiť aj pre iné predmety.<br>
         Pre <b>vybraný školský rok a predmet</b> bude možné:<br>
         &emsp;&emsp;&emsp;1. zobraziť získané body študenta,<br>
@@ -25,6 +30,23 @@
         "log" => "Prihlásenie do systému",
         "username" => "Meno",
         "submit" => "Prihlásiť sa",
-        "password" => "Heslo"
+        "password" => "Heslo",
+        "together" => "Spolu",
+        "show" => "Zobrazenie výsledkov",
+        "year" => "Školský rok",
+        "subjectname" => "Názov predmetu",
+        "back" => "Späť",
+        "import" => "Vloženie výsledkov",
+        "csv" => "CSV súbor s výsledkami",
+        "delimeter" => "Oddeľovač v CSV",
+        "delete" => "Vymazanie predmetu",
+        "show1" => "Zobraziť",
+        "import1" => "Vložiť",
+        "delete1" => "Vymazať",
+        "csvexport" => "Export do csv súbora",
+        "import2" => "Vloženie tímov",
+        "teams" => "Bodovanie timov",
+        "import3" => "Vloženie súboru",
+        "send" => "Poslať"
     );
 ?>

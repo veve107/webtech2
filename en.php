@@ -2,9 +2,14 @@
     $lang = array(
         "title" => "Final task",
         "home" => "Home",
-        "zadanie1" => "Show results",
-        "zadanie2" => "Task 2",
-        "zadanie3" => "Task 3",
+        "zadanie1" => "Show results (stud)",
+        "zadanie2" => "Show results (admi)",
+        "zadanie3" => "Import results (admi)",
+        "zadanie4" => "Delete results (admi)",
+        "zadanie5" => "Team points (admi)",
+        "zadanie6" => "Upload CSV (admi)",
+        "zadanie7" => "Export CSV (admi)",
+        "zadanie8" => "Read CSV (admi)",
         "text" => "Create a „Web Technologies“ subject support portal, which can also be used for other subjects.<br>
         For <b>the selected school year and subject</b>:<br>
         &emsp;&emsp;&emsp;1. View student's score points<br>
@@ -25,6 +30,24 @@
         "log" => "Log in to system",
         "username" => "Name",
         "submit" => "Log in",
-        "password" => "Password"
+        "password" => "Password",
+        "together" => "Together",
+        "mark" => "Mark",
+        "show" => "Show results",
+        "subjectname" => "Name of subject",
+        "back" => "Back",
+        "import" => "Import results",
+        "csv" => "CSV file with results",
+        "delimeter" => "Delimeter in CSV",
+        "delete" => "Delete subject", 
+        "year" => "School year",
+        "show1" => "Show",
+        "import1" => "Import",
+        "delete1" => "Delete",
+        "csvexport" => "Export to CSV file",
+        "import2" => "Import teams",
+        "teams" => "Team points",
+        "import3" => "Import file",
+        "send" => "Send"
     );
 ?>

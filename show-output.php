@@ -48,10 +48,25 @@
 				<a class="nav-link" href="show-output.php"><?php echo $lang['zadanie1'] ?></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#"><?php echo $lang['zadanie2'] ?></a>
+				<a class="nav-link" href="show-results.php"><?php echo $lang['zadanie2'] ?></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#"><?php echo $lang['zadanie3'] ?></a>
+				<a class="nav-link" href="import-results.php"><?php echo $lang['zadanie3'] ?></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="delete-results.php"><?php echo $lang['zadanie4'] ?></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="showTeams.php"><?php echo $lang['zadanie5'] ?></a>
+			</li>
+            <li class="nav-item">
+				<a class="nav-link" href="uploadCsv.php"><?php echo $lang['zadanie6'] ?></a>
+			</li>
+            <li class="nav-item">
+				<a class="nav-link" href="exportToCsv.php"><?php echo $lang['zadanie7'] ?></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="readCSV.php"><?php echo $lang['zadanie8'] ?></a>
 			</li>
 		</ul>
 		<ul class="navbar-nav ml-auto">
@@ -69,18 +84,18 @@
 					if ($value == "studenti"){
 						continue;
 					};
-
 					//ziskat id zo systemu po prihlaseni
 					//$myID = "23546";
 					$myID = "12345";
 					//$myID = "14520";
 					
 					$result = $conn->query("SELECT * FROM $value p WHERE p.ID = '$myID'");
-
+					
 					if ( $result->num_rows > 0 ){
+						//var_dump($result);
 						echo "<table class='table table-dark text-center'><thead><tr><th>cv1</th><th>cv2</th><th>cv3</th><th>cv4</th><th>cv5</th><th>cv6</th>
-						<th>cv7</th><th>cv8</th><th>cv9</th><th>cv10</th><th>cv11</th><th>Z1</th><th>Z2</th><th>VT</th><th>SKT</th><th>SKP</th><th>Spolu</th>
-						<th>Známka</th></tr></thead><tbody>";
+						<th>cv7</th><th>cv8</th><th>cv9</th><th>cv10</th><th>cv11</th><th>Z1</th><th>Z2</th><th>VT</th><th>SKT</th><th>SKP</th><th>"
+						. $lang['together'] . "</th><th>" . $lang['mark'] . "</th></tr></thead><tbody>";
 						while($row = $result->fetch_assoc()) {
 							echo "<h4>" . $value . " - {$row['skolskyrok']}</h4><tr><td>{$row['cv1']}</td><td>{$row['cv2']}</td><td>{$row['cv3']}</td>
 							<td>{$row['cv4']}</td><td>{$row['cv5']}</td><td>{$row['cv6']}</td><td>{$row['cv7']}</td><td>{$row['cv8']}</td><td>{$row['cv9']}</td>

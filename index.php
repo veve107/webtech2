@@ -22,7 +22,7 @@
 </head>
 <body class="bg-light">
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-		<ul class="navbar-nav">
+	<ul class="navbar-nav">
 			<li class="nav-item active">
 				<a class="nav-link" href="index.php"><?php echo $lang['home'] ?></a>
 			</li>
@@ -30,10 +30,25 @@
 				<a class="nav-link" href="show-output.php"><?php echo $lang['zadanie1'] ?></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#"><?php echo $lang['zadanie2'] ?></a>
+				<a class="nav-link" href="show-results.php"><?php echo $lang['zadanie2'] ?></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#"><?php echo $lang['zadanie3'] ?></a>
+				<a class="nav-link" href="import-results.php"><?php echo $lang['zadanie3'] ?></a>
+			</li>
+            <li class="nav-item">
+				<a class="nav-link" href="delete-results.php"><?php echo $lang['zadanie4'] ?></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="showTeams.php"><?php echo $lang['zadanie5'] ?></a>
+			</li>
+            <li class="nav-item">
+				<a class="nav-link" href="uploadCsv.php"><?php echo $lang['zadanie6'] ?></a>
+			</li>
+            <li class="nav-item">
+				<a class="nav-link" href="exportToCsv.php"><?php echo $lang['zadanie7'] ?></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="readCSV.php"><?php echo $lang['zadanie8'] ?></a>
 			</li>
 		</ul>
 		<ul class="navbar-nav ml-auto">
