@@ -1,6 +1,5 @@
 <?php
 include_once("config.php");
-include_once("fpdf/fpdf.php");
 require_once("dompdf/autoload.inc.php");
 use Dompdf\Dompdf;
 
@@ -49,7 +48,7 @@ $html = '<html>
             }
         </style>
         </head>
-        <body><h1>'.$predmet.'</h1>';
+        <body><h1>'.str_replace("_", " ", $predmet).' - výsledky</h1>';
 $html .= '<table><thead>';
 while($row2 = $result2->fetch_assoc()){
     $html .= "<th>" . $row2["Field"] . "</th>";

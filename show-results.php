@@ -6,16 +6,23 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 mysqli_set_charset($conn, "UTF8");
-
 if(isset($_POST["submit"])){
-    $predmet = $_POST["predmet"];
+    $predmet = str_replace(" ", "_", $_POST["predmet"]);
     $rok = $_POST["rok"];
 
-    $sql = "SELECT * FROM $predmet p WHERE p.skolskyrok = '$rok'";
-    $result = $conn->query($sql);
+    $exist = "SELECT * FROM $predmet";
+    $result0 = $conn->query($exist);
+    if($result0->num_rows == 0){
+        $msg = "Zadaný predmet neexistuje.";
+    }else{
+        $sql = "SELECT * FROM $predmet p WHERE p.skolskyrok = '$rok'";
+        $result = $conn->query($sql);
 
-    $sql2 = "DESCRIBE $predmet";
-    $result2 = $conn->query($sql2);
+        $sql2 = "DESCRIBE $predmet";
+        $result2 = $conn->query($sql2);
+        $msg = "Nenašli sa žiadne záznamy.";
+    }
+
 }
 ?>
 <!DOCTYPE html>
@@ -40,10 +47,7 @@ if(isset($_POST["submit"])){
             <option value="2017/2018">2017/2018</option>
         </select><br>
         <label for="predmet">Názov predmetu</label>
-        <select name="predmet" required>
-            <option value="webtech1">Webové technológie 1</option>
-            <option value="webtech2">Webové technológie 2</option>
-        </select><br>
+        <input type="text" name="predmet" required><br>
         <input type="submit" name="submit" value="Zobraziť">
     </form>
 
@@ -64,7 +68,7 @@ if(isset($_POST["submit"])){
         echo "</tbody></table>";
         echo "<a href='generate-pdf.php?rok=$rok&predmet=$predmet' target='_blank'>Generovať PDF</a>";
     }else{
-        echo "<p>Nenašli sa žiadne záznamy.</p>";
+        echo $msg;
     }
 
         $conn->close();
