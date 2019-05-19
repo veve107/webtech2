@@ -1,4 +1,7 @@
 <?php
+
+/*Tato stranka nema mat okno*/
+
 include_once("config.php");
 
 $conn;

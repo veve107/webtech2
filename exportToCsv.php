@@ -32,11 +32,11 @@ if(isset($_POST["predmet"])){
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin - Vloženie výsledkov</title>
+    <title>Admin - Export do csv subora</title>
 </head>
 <body>
 <header>
-    <h1>Bodovanie timov</h1>
+    <h1>Export do csv subora</h1>
 </header>
 
 <div>
@@ -51,6 +51,7 @@ if(isset($_POST["predmet"])){
     </form>
 
     <?php
+    /* Vypis predmetov v rocniku */
     if(isset($_SESSION["rok"])){
         echo '<form method="post" action="exportToCsv.php" enctype="multipart/form-data">';
         echo '<label for="predmet">Predmet</label>';
@@ -86,7 +87,7 @@ if(isset($_SESSION["rok"])){
 
             $sql="SELECT * FROM `".$tableName1."`";
             $result = $conn->query($sql)->fetchAll();
-
+            /*Vypis studentov v rocniku*/
             echo "<table>";
             echo "<tr>";
 	        echo "<th> Email </th>";

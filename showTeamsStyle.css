@@ -1,0 +1,28 @@
+#piechart{
+    width: 500px;
+    height: 200px;
+    float:left;
+}
+#piechart2{
+    width: 500px;
+    height: 200px;
+    float:left;
+}
+#container{
+    width: 1000px;
+    height: 200px;
+}
+#containerStat{
+    width: 1000px;
+    height: 100px;
+}
+#stat1{
+    width: 500px;
+    height: 100px;
+    float:left;
+}
+#stat2{
+    width: 500px;
+    height: 100px;
+    float:left;
+}

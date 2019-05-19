@@ -42,7 +42,6 @@ if(isset($_GET["action"])){
     }
     if($_GET["action"]=="suhlasim")
     {
-        echo "suhlasim";
         $tmpTim= $_GET["tim"];
         $update = "UPDATE `".$tableName2."` SET suhlas = 'suhlasim' WHERE tim = $tmpTim";
         if($conn->query($update) === FALSE)
@@ -56,7 +55,6 @@ if(isset($_GET["action"])){
     }
     if($_GET["action"]=="nesuhlasim")
     {
-        echo "nesuhlasim";
 
         $tmpTim= $_GET["tim"];
         $update = "UPDATE `".$tableName2."` SET suhlas = 'nesuhlasim' WHERE tim = $tmpTim";
@@ -72,9 +70,6 @@ if(isset($_GET["action"])){
 }
 
 
-echo $_SESSION["rok"];
-echo $_SESSION["predmet"];
-
 
 ?>
 
@@ -83,7 +78,8 @@ echo $_SESSION["predmet"];
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin - Vloženie výsledkov</title>
+    <title>Admin - Bodovanie timov</title>
+    <link rel="stylesheet" href="showTeamsStyle.css">
 </head>
 <body>
 <header>
@@ -102,6 +98,7 @@ echo $_SESSION["predmet"];
     </form>
 
     <?php
+    /* Vypis predmetov v rocniku */
     if(isset($_SESSION["rok"])){
         echo '<form method="post" action="showTeams.php" enctype="multipart/form-data">';
         echo '<label for="predmet">Predmet</label>';
@@ -138,9 +135,89 @@ if(isset($_SESSION["rok"])){
             $tableName1='u2_'.$_SESSION["rok"].'_'.$_SESSION["predmet"];
             $tableName2='u2_'.$_SESSION["rok"].'_'.$_SESSION["predmet"]."_timi_body";
 
+            $sqlTotal = "SELECT count(id) as total FROM `".$tableName1."`";
+            $resultTotal = $conn->query($sqlTotal)->fetchAll();
+            /* Vypis statistik */
+            echo "<div id='containerStat'>";
+            echo "<div id='stat1'>";
+            echo "Studenti: ".$resultTotal[0]['total']."<br>";
+            $sqlTotalSuhlas = "SELECT suhlas,count(*) as total FROM `".$tableName1."` GROUP BY suhlas";
+            $resultSuhlas = $conn->query($sqlTotalSuhlas)->fetchAll();
+            foreach ($resultSuhlas as $rowS) {
+                echo $rowS['suhlas'].": ".$rowS['total']."<br>";
+
+            }
+            echo "</div>";
+            echo "<div id='stat2'>";
+
+            $sqlTimTotal = "SELECT count(tim) as total FROM `".$tableName2."`";
+            $resultTimTotal = $conn->query($sqlTimTotal)->fetchAll();
+            echo "Timi: ".$resultTimTotal[0]['total']."<br>";
+            $sqlTimSuhlas = "SELECT suhlas,count(*) as total FROM `".$tableName2."` GROUP BY suhlas";
+            $resultTimSuhlas = $conn->query($sqlTimSuhlas)->fetchAll();
+            foreach ($resultTimSuhlas as $rowS) {
+                echo $rowS['suhlas'].": ".$rowS['total']."<br>";
+
+            }
+            echo "</div>";
+            echo "</div>";
+            
+?>
+
+<!-- Vypis grafov -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {packages: ['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart()
+    {
+        var data = google.visualization.arrayToDataTable([
+            ['Suhlas','Total'],
+            <?php
+            foreach ($resultSuhlas as $rowS) {
+                echo "['".$rowS["suhlas"]."', ".$rowS["total"]."],";
+            } 
+
+            ?>
+        ]);
+        var options ={
+            title: 'Statistika studentov'
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data,options);
+    }
+</script>
+<script type="text/javascript">
+    google.charts.load('current', {packages: ['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart()
+    {
+        var data = google.visualization.arrayToDataTable([
+            ['Suhlas','Total'],
+            <?php
+            foreach ($resultTimSuhlas as $rowS) {
+                echo "['".$rowS["suhlas"]."', ".$rowS["total"]."],";
+            } 
+
+            ?>
+        ]);
+        var options ={
+            title: 'Statistika timov'
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+        chart.draw(data,options);
+    }
+</script>
+<div id='container'>
+<div id='piechart'></div>
+<div id='piechart2'></div>
+</div>
+
+<?php
+            /* Vypis timov */
             $sql="SELECT * FROM `".$tableName2."`";
             $result = $conn->query($sql)->fetchAll();
-
+            echo "<div id='tables'>";
             foreach ($result as $row) {
                 $tim=$row['tim'];
                 $body=$row['body'];
@@ -190,6 +267,7 @@ if(isset($_SESSION["rok"])){
                     echo "</form>";
                 }
             }
+            echo "</div>";
     }
 }
 ?>

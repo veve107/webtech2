@@ -18,7 +18,7 @@ if(isset($_POST["submit"])){
     $tableName1='u2_'.$rok.'_'.$predmet;
     $tableName2='u2_'.$rok.'_'.$predmet."_timi_body";
     if($_FILES["subor"]["size"] > 0){
-
+        /* Vytvorenie tabulky so zadanym nazvom */
         $table1="CREATE TABLE IF NOT EXISTS `".$tableName1."`
         (
             id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -32,51 +32,87 @@ if(isset($_POST["submit"])){
 
         try{
             $conn->query($table1);
-            echo "Table created";
         }catch(PDOException $ex){
         echo "An error".$ex->getMessage();
         }
-
+        /* Vytvorenie tabulky so zadanym nazvom pre timi*/
         $table2="CREATE TABLE IF NOT EXISTS `".$tableName2."`
         (
             tim INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
             body INT UNSIGNED NOT NULL,
-            suhlas VARCHAR(255) NOT NULL,
-            kapitan INT UNSIGNED NOT NULL
+            suhlas VARCHAR(255) NOT NULL
         )";
 
         try{
             $conn->query($table2);
-            echo "Table created";
         }catch(PDOException $ex){
         echo "An error".$ex->getMessage();
+        }
+        
+        /* Ak tabulky existuju vymaz obsah na prepisanie */
+        $del1="DELETE FROM`".$tableName1."`";      
+        if($conn->query($del1) === FALSE)
+        {
+            $msg = "Niekde sa stala chyba." . $conn->error;
+        }
+        $del2="DELETE FROM`".$tableName2."`";      
+        if($conn->query($del2) === FALSE)
+        {
+            $msg = "Niekde sa stala chyba." . $conn->error;
         }
 
 
         $file = fopen($filename, "r");
         $first=0;
         while (($getData = fgetcsv($file, 10000, $tag)) !== FALSE){
-            if($first!=0){
-                echo count($getData);
+            /* V csv subore je stlpec heslo */
+            if(count($getData)==5)
+            {
+                if($first!=0){
 
-                $sql="INSERT IGNORE INTO `".$tableName1."`(id,meno,email,heslo,tim,body,suhlas) VALUES ('".$getData[0]."','".$getData[1]."','".$getData[2]."','".$getData[3]."','".$getData[4]."',0,'nevyjadril')";
+                    $sql="INSERT IGNORE INTO `".$tableName1."`(id,meno,email,heslo,tim,body,suhlas) VALUES ('".$getData[0]."','".$getData[1]."','".$getData[2]."','".$getData[3]."','".$getData[4]."',0,'nevyjadril')";
                 
-                if($conn->query($sql) === FALSE)
-                {
-                    $msg = "Niekde sa stala chyba." . $conn->error;
-                }
-                else {
-                    $msg = "CSV súbor bol úspešne nahratý.";
-                }
-                $sql2="INSERT IGNORE INTO `".$tableName2."`(tim,body,suhlas) VALUES ('".$getData[4]."',0,'nevyjadril')";
-                if($conn->query($sql2) === FALSE)
-                {
-                    $msg = "Niekde sa stala chyba." . $conn->error;
-                }
-                else {
-                    $msg = "CSV súbor bol úspešne nahratý.";
-                }
-            }else{$first=1;}
+                    if($conn->query($sql) === FALSE)
+                    {
+                        $msg = "Niekde sa stala chyba." . $conn->error;
+                    }
+                    $sql2="INSERT IGNORE INTO `".$tableName2."`(tim,body,suhlas) VALUES ('".$getData[4]."',0,'nevyjadril')";
+                    if($conn->query($sql2) === FALSE)
+                    {
+                        $msg = "Niekde sa stala chyba." . $conn->error;
+                    }
+                
+                    $sql3="INSERT IGNORE INTO students (id,meno,email,heslo) VALUES ('".$getData[0]."','".$getData[1]."','".$getData[2]."','".$getData[3]."')";
+                    if($conn->query($sql3) === FALSE)
+                    {
+                        $msg = "Niekde sa stala chyba." . $conn->error;
+                    }
+                }else{$first=1;}
+            }
+            /* V csv subore nie je stlpec heslo */
+            if(count($getData)==4)
+            {
+                    if($first!=0){
+                    
+                    $sql="INSERT IGNORE INTO `".$tableName1."`(id,meno,email,heslo,tim,body,suhlas) VALUES ('".$getData[0]."','".$getData[1]."','".$getData[2]."','','".$getData[3]."',0,'nevyjadril')";
+                    
+                    if($conn->query($sql) === FALSE)
+                    {
+                        $msg = "Niekde sa stala chyba." . $conn->error;
+                    }
+                    $sql2="INSERT IGNORE INTO `".$tableName2."`(tim,body,suhlas) VALUES ('".$getData[3]."',0,'nevyjadril')";
+                    if($conn->query($sql2) === FALSE)
+                    {
+                        $msg = "Niekde sa stala chyba." . $conn->error;
+                    }
+                
+                    $sql3="INSERT IGNORE INTO students (id,meno,email,heslo) VALUES ('".$getData[0]."','".$getData[1]."','".$getData[2]."','')";
+                    if($conn->query($sql3) === FALSE)
+                    {
+                        $msg = "Niekde sa stala chyba." . $conn->error;
+                    }
+                }else{$first=1;} 
+            }
         }
 
 
@@ -91,16 +127,15 @@ if(isset($_POST["submit"])){
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin - Vloženie výsledkov</title>
+    <title>Admin - Vloženie timov</title>
 </head>
 <body>
 <header>
-    <h1>Úvod</h1>
+    <h1>Vloženie timov</h1>
 </header>
 
 <div>
 
-    <h2>Vloženie výsledkov</h2>
     <form method="post" action="uploadCsv.php" enctype="multipart/form-data">
         <label for="rok">Školský rok</label>
         <select name="rok" required>
@@ -117,13 +152,6 @@ if(isset($_POST["submit"])){
     </form>
 
     <?php
-    if(isset($_POST["submit"])){
-        echo "<h2><a href="."showTeams.php".">Zobraz výsledky</a></h2>";
-    }
-
-
-    
-
      echo $msg; ?>
 
 </div>
