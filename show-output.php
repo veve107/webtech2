@@ -87,12 +87,12 @@
 					};
 					
 					//ziskat id zo systemu po prihlaseni
-					//$ID = "SELECT ID FROM $value";
-					//$myID = $conn->query($ID);
+					$ID = "SELECT ID FROM $value";
+					$myID = $conn->query($ID);
 
 					//testovacie Idecka
 					//$myID = "23546";
-					$myID = "12345";
+					//$myID = "12345";
 					//$myID = "14520";
 										
 					$result = $conn->query("SELECT * FROM $value p WHERE p.ID = '$myID'");
