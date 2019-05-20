@@ -87,8 +87,7 @@
 					};
 					
 					//ziskat id zo systemu po prihlaseni
-					$ID = "SELECT ID FROM $value";
-					$myID = $conn->query($ID);
+
 
 					//testovacie Idecka
 					//$myID = "23546";
