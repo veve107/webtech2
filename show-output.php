@@ -87,7 +87,7 @@
 					};
 					
 					//ziskat id zo systemu po prihlaseni
-
+					$myID = $_SESSION["ID"];
 
 					//testovacie Idecka
 					//$myID = "23546";
