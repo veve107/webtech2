@@ -16,12 +16,10 @@ if(isset($_POST["submit"])){
     if($result0->num_rows == 0){
         $msg = "Zadaný predmet neexistuje.";
     }else{
-        $sql = "SELECT * FROM $predmet p WHERE p.skolskyrok = '$rok'";
-        $result = $conn->query($sql);
-
-        $sql2 = "DESCRIBE $predmet";
-        $result2 = $conn->query($sql2);
-        $msg = "Nenašli sa žiadne záznamy.";
+        $sql = "DROP TABLE $predmet";
+        if($conn->query($sql) === TRUE);{
+            $msg = "Predmet " . str_replace("_", " ", $_POST["predmet"]) . " bol vymazaný.";
+        }
     }
 
 }
@@ -31,7 +29,7 @@ if(isset($_POST["submit"])){
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin - <?php echo $lang['show'] ?></title>
+    <title>Admin - Vymazanie predmetu</title>
     <link rel="stylesheet" href="bootstrap.min.css">
     <style type="text/css">
 		.footer {
@@ -74,7 +72,7 @@ if(isset($_POST["submit"])){
             <li class="nav-item">
 				<a class="nav-link" href="exportToCsv.php"><?php echo $lang['zadanie7'] ?></a>
 			</li>
-            <li class="nav-item">
+			<li class="nav-item">
 				<a class="nav-link" href="readCSV.php"><?php echo $lang['zadanie8'] ?></a>
 			</li>
 		</ul>
@@ -87,46 +85,22 @@ if(isset($_POST["submit"])){
 <div class="container" style="margin-top: 100px;">
     <div class="row justify-content-center">
         <div class="col-md-4 col-md-offset-3">
-        <h2><?php echo $lang['show'] ?></h2>
-        <form method="post" action="show-results.php">
-            <label for="rok"><?php echo $lang['year'] ?></label>
-            <select name="rok" required>
-                <option value="2018/2019">2018/2019</option>
-                <option value="2017/2018">2017/2018</option>
-            </select><br>
+        <h2><?php echo $lang['delete'] ?></h2>
+        <form method="post" action="delete-results.php">
             <label for="predmet"><?php echo $lang['subjectname'] ?></label>
             <input type="text" name="predmet" required><br>
-            <input type="submit" name="submit" value="<?php echo $lang['show1'] ?>">
+            <input type="submit" name="submit" value="<?php echo $lang['delete1'] ?>">
         </form>
 
         <?php
-        if($result->num_rows > 0){
-            echo "<table><thead>";
-            while($row2 = $result2->fetch_assoc()){
-                echo "<th>" . $row2["Field"] . "</th>";
-            }
-            echo "</thead><tbody>";
-            while($row = $result->fetch_assoc()){
-                echo "<tr>";
-                foreach ($row as $data){
-                    echo "<td>" . $data . "</td>";
-                }
-                echo "</tr>";
-            }
-            echo "</tbody></table>";
-            echo "<a href='generate-pdf.php?rok=$rok&predmet=$predmet' target='_blank'>Generovať PDF</a>";
-        }else{
             echo $msg;
-        }
-
-            $conn->close();
         ?>
         </div>
     </div>
 </div>
 <div class="footer bg-dark">
-<a href="show-results.php?lang=sk"><img src='https://restcountries.eu/data/svk.svg' width='40px'/></a>
-| <a href="show-results.php?lang=en"><img src='https://restcountries.eu/data/gbr.svg' width='40px'/></a>
+<a href="delete-results.php?lang=sk"><img src='https://restcountries.eu/data/svk.svg' width='40px'/></a>
+| <a href="delete-results.php?lang=en"><img src='https://restcountries.eu/data/gbr.svg' width='40px'/></a>
 </div>
 </body>
 </html>
