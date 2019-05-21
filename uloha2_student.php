@@ -5,7 +5,7 @@ include_once("config.php");
 include "config-lang.php";
 
 try{
-    $conn = new PDO("mysql:host=" . $host . ";dbname=" . $db_name, $username, $password);
+    $conn = new PDO("mysql:host=" . $host . ";dbname=" . $db, $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch(PDOException $e){
