@@ -50,14 +50,34 @@ if(isset($_POST["submit"])){
             echo "An error".$ex->getMessage();
         }
 
+        /* Vytvorenie tabulky so studentami*/
+        $table2="CREATE TABLE IF NOT EXISTS `students`
+        (
+            id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+            meno VARCHAR(255) NOT NULL,
+            email VARCHAR(255) NOT NULL,
+            heslo VARCHAR(255) NOT NULL
+        )";
+
+        try{
+            $conn->query($table2);
+        }catch(PDOException $ex){
+            echo "An error".$ex->getMessage();
+        }
+
         /* Ak tabulky existuju vymaz obsah na prepisanie */
-        $del1="DELETE FROM`".$tableName1."`";
+        $del1="DELETE FROM `".$tableName1."`";
         if($conn->query($del1) === FALSE)
         {
             $msg = "Niekde sa stala chyba." . $conn->error;
         }
-        $del2="DELETE FROM`".$tableName2."`";
+        $del2="DELETE FROM `".$tableName2."`";
         if($conn->query($del2) === FALSE)
+        {
+            $msg = "Niekde sa stala chyba." . $conn->error;
+        }
+        $del3="DELETE FROM `students`";
+        if($conn->query($del3) === FALSE)
         {
             $msg = "Niekde sa stala chyba." . $conn->error;
         }
