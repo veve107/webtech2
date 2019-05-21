@@ -2,6 +2,7 @@
 session_start();
 
 include_once("config.php");
+include "config-lang.php";
 
 try{
     $conn = new PDO("mysql:host=" . $host . ";dbname=" . $db_name, $username, $password);
@@ -154,7 +155,7 @@ if(isset($_GET["action"])){
 
             }
             ?>
-            </div>
+
         </div>
     </div>
 
@@ -234,8 +235,8 @@ if(isset($_SESSION["rok"])){
 }
 ?>
 <div class="footer bg-dark">
-    <a href="showTeams.php?lang=sk"><img src='https://restcountries.eu/data/svk.svg' width='40px'/></a>
-    | <a href="showTeams.php?lang=en"><img src='https://restcountries.eu/data/gbr.svg' width='40px'/></a>
+    <a href="uloha2_student.php?lang=sk"><img src='https://restcountries.eu/data/svk.svg' width='40px'/></a>
+    | <a href="uloha2_student.php?lang=en"><img src='https://restcountries.eu/data/gbr.svg' width='40px'/></a>
 </div>
 </body>
 </html>
