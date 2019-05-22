@@ -1,9 +1,9 @@
 <?php
 $servername = "localhost";
-$username = "xmintalz";
+/*$username = "xmintalz";
 $password = "xiaomiredminote3";
-$db = "finale";
-/*$db = "db_zaverecna_parai";
+$db = "finale";*/
+$db = "db_zaverecna_test";
 $username = "xpapcun";
-$password = "nVfl9gvhCgkD";*/
+$password = "nVfl9gvhCgkD";
 ?>
