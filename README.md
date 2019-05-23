@@ -1,7 +1,7 @@
 # webtech2
 skúškové zadanie
 
-https://147.175.121.210:4496/final/index.php
+http://147.175.121.210:8109/Zadanie3/login.php
 
 surovo spojene, 2jazycnost na miestach ktore hned naoko vidiet
 Úloha 1 - admin
