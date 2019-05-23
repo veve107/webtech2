@@ -1,0 +1,5 @@
+﻿ID;Meno;Email;Login;heslo;verejnaIP;privatnaIP;ssh;http;https;misc1;misc2
+12345;"Priezvisko1 Meno1";xpriezvisko1@is.stuba.sk;xpriezvisko1;MBZNs8SWaybW73f;147.175.121.210;192.168.0.1;2201;8001;4401;9001;1901
+24598;"Priezvisko2 Meno2";xpriezvisko2@is.stuba.sk;xpriezvisko2;PzE5hmX7B3R7aj6;147.175.121.210;192.168.0.2;2201;8001;4401;9001;1901
+54187;"Priezvisko3 Meno3";xpriezvisko3@is.stuba.sk;xpriezvisko3;3N5F72K46Z66Qvc;147.175.121.210;192.168.0.3;2201;8001;4401;9001;1901
+23581;"Priezvisko4 Meno4";xpriezvisko4@is.stuba.sk;xpriezvisko4;8kJYTAY82Dyf2se;147.175.121.210;192.168.0.4;2201;8001;4401;9001;1901
